@@ -21,7 +21,8 @@ const navigationHeaderOptions = {
     headerStyle: {
         backgroundColor: colors.assert,
         elevation: 1,
-        borderBottomWidth: 0
+        borderBottomWidth: 0,
+        shadowOffset: { height: 0, width: 0 }
     },
     headerTintColor: 'white',
     headerTitleStyle: {

@@ -51,7 +51,7 @@ export default withTheme(({theme, navigation, route}) => {
                 Toast.show(msg)
             })
         }
-        const shadowStyle = role==0?{shadowColor: 'red', shadowOffset: {width: 0, height: 5}, elevation: 10}:{}
+        const shadowStyle = role==0?{shadowColor: 'black', shadowOffset: {width: 0, height: 5}, elevation: 10, shadowOpacity: 0.5}:{}
         return (
             <View
                 style={{borderRadius: 5, flexDirection: 'row', alignItems: 'center', padding: 10, backgroundColor: 'white'}}
@@ -71,14 +71,16 @@ export default withTheme(({theme, navigation, route}) => {
                         </TouchableOpacity>
                     }
                 </View>
+                <View style={shadowStyle}>
                 <Button
                     buttonStyle={{borderRadius: 5, paddingHorizontal: 20, paddingVertical: 8}}
-                    containerStyle={shadowStyle}
+                    // containerStyle={shadowStyle}
                     onPress={handleInvite}
                     disabled={role!=0}
                     loading={loading}
                     titleStyle={{letterSpacing: 1}}
                     title={getInvitingStatus(role)}/>
+                </View>
             </View>
         )
     }
