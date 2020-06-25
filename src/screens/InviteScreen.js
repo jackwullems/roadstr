@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {SafeAreaView, FlatList, View, Text, TouchableOpacity} from 'react-native'
+import {SafeAreaView, FlatList, View, Text, TouchableOpacity, Platform} from 'react-native'
 import { SearchBar, ListItem, Button, Avatar, withTheme } from 'react-native-elements'
 import {useState} from 'react'
 import {useSelector} from 'react-redux'
@@ -71,16 +71,30 @@ export default withTheme(({theme, navigation, route}) => {
                         </TouchableOpacity>
                     }
                 </View>
-                <View style={shadowStyle}>
-                <Button
-                    buttonStyle={{borderRadius: 5, paddingHorizontal: 20, paddingVertical: 8}}
-                    // containerStyle={shadowStyle}
-                    onPress={handleInvite}
-                    disabled={role!=0}
-                    loading={loading}
-                    titleStyle={{letterSpacing: 1}}
-                    title={getInvitingStatus(role)}/>
-                </View>
+                {
+                    Platform.OS == 'ios'
+                    ?
+                    <View style={shadowStyle}>
+                    <Button
+                        buttonStyle={{borderRadius: 5, paddingHorizontal: 20, paddingVertical: 8}}
+                        // containerStyle={shadowStyle}
+                        onPress={handleInvite}
+                        disabled={role!=0}
+                        loading={loading}
+                        titleStyle={{letterSpacing: 1}}
+                        title={getInvitingStatus(role)}/>
+                    </View>
+                    :
+                    <Button
+                        buttonStyle={{borderRadius: 5, paddingHorizontal: 20, paddingVertical: 8}}
+                        containerStyle={shadowStyle}
+                        onPress={handleInvite}
+                        disabled={role!=0}
+                        loading={loading}
+                        titleStyle={{letterSpacing: 1}}
+                        title={getInvitingStatus(role)}/>
+
+                    }
             </View>
         )
     }
